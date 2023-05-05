@@ -21,6 +21,7 @@ jobs:
       - run: 
           name: Configuring AWS
           command: |
+            ls
             if [ $CIRCLE_BRANCH = 'master' ]; then
             aws s3 sync ./app/build s3://${AWS_S3_BUCKET} --delete --exact-timestamps;
             fi
