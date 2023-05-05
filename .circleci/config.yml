@@ -4,8 +4,12 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
       docker_layer_caching: true
-    docker:
-      image: innovatorjapan/awscli:latest
+    # docker:
+    #   image: innovatorjapan/awscli:latest
+    environment:
+      AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+      AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
     steps:
       - checkout
       - run:
@@ -13,6 +17,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt install python3-pip
+            sudo apt install awscli
       - run: cd ./app && npm install && npm run build
       - run: aws s3 sync ./app/build s3://${AWS_S3_BUCKET}
   # deploy:  
