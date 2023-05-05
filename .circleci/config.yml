@@ -15,7 +15,9 @@ jobs:
             sudo apt install awscli --upgrade
             sudo apt-get install nodejs
             sudo apt install npm
+            sudo apt-get install openssl
             sudo npm --version
+            sudo node -v
       - run: cd ./app && npm install && npm run build
       - run: aws s3 sync ./app/build s3://${AWS_S3_BUCKET}
 
