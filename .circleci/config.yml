@@ -13,13 +13,13 @@ jobs:
             sudo apt-get update
             sudo apt install python3-pip
             sudo apt install awscli --upgrade
+            aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID} --profile default
+            aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY} --profile default
+            aws configure set default.region ${AWS_REGION} --profile default
       - run: cd ./app && npm install && npm run build
       - run: 
           name: Configuring AWS
           command: |
-            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            aws configure set default.region $AWS_REGION
             aws s3 sync ./app/build s3://${AWS_S3_BUCKET}
 
 
