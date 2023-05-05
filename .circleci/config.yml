@@ -16,8 +16,8 @@ jobs:
     docker:
         - image: innovatorjapan/awscli:latest
     steps:
-      - attach_workspace:
-          at: .
+      # - attach_workspace:
+      #     at: .
       - run: 
           name: Configuring AWS
           command: |
