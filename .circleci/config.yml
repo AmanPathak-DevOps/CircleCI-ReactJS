@@ -28,8 +28,8 @@ jobs:
       image: ubuntu-2004:202010-01
       docker_layer_caching: true
     steps:
-      - attach_workspace:
-          at: .
+      # - attach_workspace:
+      #     at: .
       - checkout
       - run: 
           name: Configuring AWS
