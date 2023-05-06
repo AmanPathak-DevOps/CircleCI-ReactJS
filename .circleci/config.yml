@@ -2,6 +2,7 @@ version: 2.1
 jobs:
 # Builing the project is going to start
   build:
+    working_directory: ~/repo
     machine:
       image: ubuntu-2004:202010-01
       docker_layer_caching: true
@@ -16,6 +17,7 @@ jobs:
 
 # Deploying the code to AWS S3 Bucket
   deploy: 
+    working_directory: ~/repo
     docker:
         - image: innovatorjapan/awscli:latest
     steps:
