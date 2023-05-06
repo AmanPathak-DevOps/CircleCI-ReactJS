@@ -24,6 +24,7 @@ jobs:
       - run: echo $AWS_SECRET_ACCESS_KEY
       - run: echo $AWS_REGION
       - run: aws s3 ls
+      
   # deploy:  
   #   working_directory: ~/repo
   #   docker:
