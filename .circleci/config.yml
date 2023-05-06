@@ -1,11 +1,11 @@
 version: 2.1
 jobs:
   build:
-    machine:
-      image: ubuntu-2004:202010-01
-      docker_layer_caching: true
-    # docker:
-    #   image: innovatorjapan/awscli:latest
+    # machine:
+    #   image: ubuntu-2004:202010-01
+    #   docker_layer_caching: true
+    docker:
+    - image: innovatorjapan/awscli:latest
     # environment:
     #   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
     #   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
@@ -15,10 +15,10 @@ jobs:
       - run:
           name: Install AWSCLI
           command: |
-            sudo apt-get update
-            sudo apt install python3-pip
-            sudo apt install awscli
-      - run: cd ./app && npm install && npm run build
+            # sudo apt-get update
+            # sudo apt install python3-pip
+            # sudo apt install awscli
+      # - run: cd ./app && npm install && npm run build
       # - run: aws s3 sync ./app/build s3://${AWS_S3_BUCKET}
       - run: aws s3 ls
   # deploy:  
