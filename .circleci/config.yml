@@ -24,8 +24,9 @@ jobs:
 # Deploying the code to AWS S3 Bucket
   deploy: 
     # working_directory: ~/repo
-    docker:
-        - image: innovatorjapan/awscli:latest
+    machine:
+      image: ubuntu-2004:202010-01
+      docker_layer_caching: true
     steps:
       - attach_workspace:
           at: .
