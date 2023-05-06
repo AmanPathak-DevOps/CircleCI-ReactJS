@@ -2,12 +2,18 @@ version: 2.1
 jobs:
 # Builing the project is going to start
   build:
-    working_directory: ~/repo
+    # working_directory: ~/repo
     machine:
       image: ubuntu-2004:202010-01
       docker_layer_caching: true
     steps:
       - checkout
+      - run:
+          name: Installing AWS CLI
+          command: |
+            sudo apt-get update
+            sudo apt install python3-pip
+            sudo pip3 install awsebcli --upgrade
       - run: cd ./app && npm install && npm run build
       - persist_to_workspace:
           root: .
@@ -17,10 +23,13 @@ jobs:
 
 # Deploying the code to AWS S3 Bucket
   deploy: 
-    working_directory: ~/repo
+    # working_directory: ~/repo
     docker:
         - image: innovatorjapan/awscli:latest
     steps:
+      - attach_workspace:
+          at: .
+      - checkout
       - run: 
           name: Configuring AWS
           command: |
